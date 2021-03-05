@@ -14,7 +14,7 @@ export default async (fastify: IFastifyInstance) => {
     order: [
       ['QuoteDate', 'desc'],
     ],
-    limit: 80,
+    limit: 90,
   });
   const start = R.last(quoteDates ?? []);
   const last = R.head(quoteDates ?? []);

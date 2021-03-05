@@ -7,7 +7,7 @@ import getQuoteDates from './get-quote-dates';
 export default async (fastify: IFastifyInstance) => {
   const [startDate, endDate] = await getQuoteDates(fastify);
   const dailyQuotes = await fastify.db?.models['DailyQuote'].findAll({
-    attributes: ['StockCode', 'QuoteDate', 'OpenPrice', 'HighPrice', 'LowPrice', 'ClosePrice'],
+    attributes: ['StockCode', 'QuoteDate', 'OpenPrice', 'HighPrice', 'LowPrice', 'ClosePrice', 'Volume', 'Value'],
     where: {
       StockCode: {
         //[Op.in]: ['^FINANCIAL', '^HOLDING', '^INDUSTRIAL', '^MINING-OIL', '^PROPERTY', '^PSEi', '^SERVICE'],
