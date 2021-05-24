@@ -1,11 +1,13 @@
 import fastify from 'fastify';
 import fastifySequelize from './plugins/fastify-sequelize';
 import dualMomentumRoute from './routes/dual-momentum';
+import trendFollowingRoute from './routes/trend-following';
 
 const server = fastify({ logger: true });
 
 server.register(fastifySequelize).ready();
 server.register(dualMomentumRoute);
+server.register(trendFollowingRoute);
 
 server.listen(8080, (err, address) => {
   if (err) {
