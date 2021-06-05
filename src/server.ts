@@ -1,11 +1,13 @@
 import fastify from 'fastify';
 import fastifySequelize from './plugins/fastify-sequelize';
+import dailyQuotesRoute from './routes/daily-quotes';
 import dualMomentumRoute from './routes/dual-momentum';
 import trendFollowingRoute from './routes/trend-following';
 
 const server = fastify({ logger: true });
 
 server.register(fastifySequelize).ready();
+server.register(dailyQuotesRoute);
 server.register(dualMomentumRoute);
 server.register(trendFollowingRoute);
 
