@@ -2,6 +2,8 @@ import { FastifyInstance } from 'fastify';
 import fastifyPlugin from 'fastify-plugin';
 import { DataTypes, Sequelize } from 'sequelize';
 import dbConfig from '../db-config';
+import dailyQuoteDefinition from '../model-definitions/daily-quote-definition';
+import trendFollowingDefinition from '../model-definitions/trend-following-definition';
 
 const fastifySequelize = async (fastify: FastifyInstance) => {
   const instance = 'db';
@@ -17,40 +19,8 @@ const fastifySequelize = async (fastify: FastifyInstance) => {
     }
   });
 
-  sequelize.define('DailyQuote', {
-    StockCode: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    QuoteDate: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    OpenPrice: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    HighPrice: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    LowPrice: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    ClosePrice: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    Volume: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    Value: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-  });
+  sequelize.define('DailyQuote', dailyQuoteDefinition);
+  sequelize.define('TrendFollowing', trendFollowingDefinition);
   
   decorate();
   
